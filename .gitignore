@@ -5,12 +5,17 @@
 backuo/
 venv/
 ios/
-dist/
 .idea/
 
 
+# Environments
+.env
+.venv
+env/
+ENV/
 
-venv/pyenv.cfg
+
+
 
 
 
