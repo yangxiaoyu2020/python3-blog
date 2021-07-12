@@ -43,8 +43,9 @@ Icon?
 ehthumbs.db
 Thumbs.db
 dist/
-venv/
 .idea/
+venv/
+
 MANIFEST
 
 # Translations
