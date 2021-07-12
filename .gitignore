@@ -4,8 +4,13 @@
 ######################
 backuo/
 venv/
-venv/pyenv.cfg
+ios/
 dist/
 .idea/
+
+
+
+venv/pyenv.cfg
+
 
 
