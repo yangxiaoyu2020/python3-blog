@@ -54,4 +54,4 @@ MANIFEST
 .pydevproject
 
 # local env
-.venv/
+venv/
