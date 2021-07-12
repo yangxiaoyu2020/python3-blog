@@ -13,9 +13,9 @@ import re
 from datetime import datetime
 from fabric.api import *
 
-env.user = 'michael'
+# env.user = 'michael'
 env.sudo_user = 'root'
-env.hosts = ['192.168.0.3']
+# env.hosts = ['192.168.0.3']
 
 db_user = 'src-data'
 db_password = 'src-data'

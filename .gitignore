@@ -52,4 +52,6 @@ MANIFEST
 .mr.developer.cfg
 .project
 .pydevproject
-./venv
+
+# local env
+.venv/
