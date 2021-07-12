@@ -2,7 +2,10 @@
 ######################
 # OS generated files #
 ######################
-dist/
-./.idea/
+backuo/
 venv/
+venv/pyenv.cfg
+dist/
+.idea/
+
 
