@@ -1,4 +1,6 @@
-awesome-python3-webapp
+python3-blog
 ======================
 
-A python webapp tutorial.
+A NEW PYTHON BLOG 
+
+**PERSONAL USED ONLY**

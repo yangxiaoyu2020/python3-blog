@@ -2,7 +2,20 @@
 ######################
 # OS generated files #
 ######################
-dist/
-./.idea/
+backuo/
 venv/
+ios/
+.idea/
+
+
+# Environments
+.env
+.venv
+env/
+ENV/
+
+
+
+
+
 
