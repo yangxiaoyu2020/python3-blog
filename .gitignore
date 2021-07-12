@@ -43,6 +43,7 @@ Icon?
 ehthumbs.db
 Thumbs.db
 dist/
+venv/
 MANIFEST
 
 # Translations
@@ -54,4 +55,3 @@ MANIFEST
 .pydevproject
 
 # local env
-venv/
