@@ -12,9 +12,10 @@ configs = {
     'db': {
         'host': '127.0.0.1',
         'port': 3306,
-        'user': 'src',
-        'password': 'src',
-        'db': 'awesome'
+        'user': 'root',
+        'password': '*******',
+        'db': 'blog'
+    #   取个好名字以后
     },
     'session': {
         'secret': 'Awesome'
