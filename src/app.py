@@ -1,7 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-__author__ = 'Michael Liao'
+from handlers import cookie2user, COOKIE_NAME
+from coroweb import add_routes, add_static
+import orm
+from config import configs
+from jinja2 import Environment, FileSystemLoader
+from aiohttp import web
+from datetime import datetime
+import time
+import json
+import os
+import asyncio
+__author__ = 'Francis yang'
 
 '''
 async web application.
@@ -10,22 +21,6 @@ async web application.
 import logging
 
 logging.basicConfig(level=logging.INFO)
-
-import asyncio
-import os
-import json
-import time
-from datetime import datetime
-
-from aiohttp import web
-from jinja2 import Environment, FileSystemLoader
-
-from config import configs
-
-import orm
-from coroweb import add_routes, add_static
-
-from handlers import cookie2user, COOKIE_NAME
 
 
 def init_jinja2(app, **kw):
@@ -40,7 +35,8 @@ def init_jinja2(app, **kw):
     )
     path = kw.get('path', None)
     if path is None:
-        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
+        path = os.path.join(os.path.dirname(
+            os.path.abspath(__file__)), 'templates')
     logging.info('set jinja2 template path: %s' % path)
     env = Environment(loader=FileSystemLoader(path), **options)
     filters = kw.get('filters', None)
@@ -115,7 +111,8 @@ async def response_factory(app, handler):
                 return resp
             else:
                 r['__user__'] = request.__user__
-                resp = web.Response(body=app['__templating__'].get_template(template).render(**r).encode('utf-8'))
+                resp = web.Response(body=app['__templating__'].get_template(
+                    template).render(**r).encode('utf-8'))
                 resp.content_type = 'text/html;charset=utf-8'
                 return resp
         if isinstance(r, int) and 100 <= r < 600:
