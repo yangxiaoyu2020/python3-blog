@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-__author__ = 'Michael Liao'
+__author__ = 'Francis yang'
 
-import asyncio, os, inspect, logging, functools
-
+import asyncio
+import functools
+import inspect
+import logging
+import os
 from urllib import parse
 
 from aiohttp import web
@@ -13,9 +16,9 @@ from apis import APIError
 
 
 def get(path):
-    '''
+    """
     Define decorator @get('/path')
-    '''
+    """
 
     def decorator(func):
         @functools.wraps(func)
@@ -30,9 +33,9 @@ def get(path):
 
 
 def post(path):
-    '''
+    """
     Define decorator @post('/path')
-    '''
+    """
 
     def decorator(func):
         @functools.wraps(func)

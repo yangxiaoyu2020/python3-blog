@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-'''
+"""
 Configuration
-'''
+"""
 
-__author__ = 'Michael Liao'
+__author__ = 'Francis yang'
 
 import config_default
 
 
 class Dict(dict):
-    '''
+    """
     Simple dict but support access as x.y style.
-    '''
+    """
 
     def __init__(self, names=(), values=(), **kw):
         super(Dict, self).__init__(**kw)
@@ -30,7 +30,7 @@ class Dict(dict):
         self[key] = value
 
 
-def merge(defaults, override):
+def merge(defaults, override) -> object:
     r = {}
     for k, v in defaults.items():
         if k in override:
@@ -43,11 +43,11 @@ def merge(defaults, override):
     return r
 
 
-def toDict(d):
-    D = Dict()
+def to_dict(d):
+    res_dict = Dict()
     for k, v in d.items():
-        D[k] = toDict(v) if isinstance(v, dict) else v
-    return D
+        res_dict[k] = to_dict(v) if isinstance(v, dict) else v
+    return res_dict
 
 
 configs = config_default.configs
@@ -59,4 +59,4 @@ try:
 except ImportError:
     pass
 
-configs = toDict(configs)
+configs = to_dict(configs)
