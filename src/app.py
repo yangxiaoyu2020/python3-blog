@@ -18,9 +18,17 @@ __author__ = 'Francis yang'
 async web application.
 '''
 
-import logging
+import logging.config
 
-logging.basicConfig(level=logging.INFO)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))      # 项目路径
+
+logging.config.fileConfig(os.path.join(BASE_DIR, "conf/logging.config"))
+logging = logging.getLogger("simpleExample")
+
+
+
+STATIC_DIR = os.path.join(BASE_DIR, 'src/static')       # 静态文件路径
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'template')   # 模版HTML路径
 
 
 def init_jinja2(app, **kw):
@@ -49,7 +57,6 @@ def init_jinja2(app, **kw):
 async def logger_factory(app, handler):
     async def logger(request):
         logging.info('Request: %s %s' % (request.method, request.path))
-        # yield from asyncio.sleep(0.3)
         return await handler(request)
 
     return logger
@@ -66,7 +73,7 @@ async def auth_factory(app, handler):
                 logging.info('set current user: %s' % user.email)
                 request.__user__ = user
         if request.path.startswith('/manage/') and (request.__user__ is None or not request.__user__.admin):
-            return web.HTTPFound('/signin')
+            return web.HTTPFound('/sign_in')
         return await handler(request)
 
     return auth
@@ -143,13 +150,18 @@ def datetime_filter(t):
     return u'%s年%s月%s日' % (dt.year, dt.month, dt.day)
 
 
+def setup_static_routes(app):
+    app.router.add_static('/static/', path=STATIC_DIR, name='static')
+
+
 async def init(loop):
     await orm.create_pool(loop=loop, **configs.db)
-    app = web.Application(loop=loop, middlewares=[
+    app = web.Application(middlewares=[
         logger_factory, auth_factory, response_factory
     ])
     init_jinja2(app, filters=dict(datetime=datetime_filter))
     add_routes(app, 'handlers')
+    setup_static_routes(app)
     app_runner = web.AppRunner(app)
     await app_runner.setup()
     srv = await loop.create_server(app_runner.server, '127.0.0.1', 9001)

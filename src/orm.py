@@ -203,6 +203,7 @@ class Model(dict, metaclass=ModelMetaclass):
                 args.extend(limit)
             else:
                 raise ValueError('Invalid limit value: %s' % str(limit))
+        aa = ' '.join(sql)
         rs = await select(' '.join(sql), args)
         return [cls(**r) for r in rs]
 

@@ -1,0 +1,98 @@
+2021-08-02 23:37:41,074 - root - INFO - create database connection pool...
+2021-08-02 23:37:41,091 - simpleExample - INFO - init jinja2...
+2021-08-02 23:37:41,091 - simpleExample - INFO - set jinja2 template path: /Users/francisyang/frank_work/python3-blog/src/templates
+2021-08-02 23:37:41,092 - root - INFO - add route GET /api/blogs => api_blogs(page)
+2021-08-02 23:37:41,092 - root - INFO - add route GET /api/comments => api_comments(page)
+2021-08-02 23:37:41,093 - root - INFO - add route POST /api/blogs => api_create_blog(request, name, summary, content)
+2021-08-02 23:37:41,094 - root - INFO - add route POST /api/blogs/{id}/comments => api_create_comment(id, request, content)
+2021-08-02 23:37:41,095 - root - INFO - add route POST /api/blogs/{id}/delete => api_delete_blog(request, id)
+2021-08-02 23:37:41,096 - root - INFO - add route POST /api/comments/{id}/delete => api_delete_comments(id, request)
+2021-08-02 23:37:41,097 - root - INFO - add route GET /api/blogs/{id} => api_get_blog(id)
+2021-08-02 23:37:41,098 - root - INFO - add route GET /api/users => api_get_users(page)
+2021-08-02 23:37:41,098 - root - INFO - add route POST /api/users => api_register_user(email, name, passwd)
+2021-08-02 23:37:41,099 - root - INFO - add route POST /api/blogs/{id} => api_update_blog(id, request, name, summary, content)
+2021-08-02 23:37:41,100 - root - INFO - add route POST /api/authenticate => authenticate(email, passwd)
+2021-08-02 23:37:41,101 - root - INFO - add route GET /blog/{id} => get_blog(id)
+2021-08-02 23:37:41,101 - root - INFO - add route GET / => index(page)
+2021-08-02 23:37:41,102 - root - INFO - add route GET /manage/ => manage()
+2021-08-02 23:37:41,102 - root - INFO - add route GET /manage/blogs => manage_blogs(page)
+2021-08-02 23:37:41,103 - root - INFO - add route GET /manage/comments => manage_comments(page)
+2021-08-02 23:37:41,104 - root - INFO - add route GET /manage/blogs/create => manage_create_blog()
+2021-08-02 23:37:41,104 - root - INFO - add route GET /manage/blogs/edit => manage_edit_blog(id)
+2021-08-02 23:37:41,105 - root - INFO - add route GET /manage/users => manage_users(page)
+2021-08-02 23:37:41,105 - root - INFO - add route GET /register => register()
+2021-08-02 23:37:41,105 - root - INFO - add route GET /sign_in => sign_in()
+2021-08-02 23:37:41,106 - root - INFO - add route GET /sign_out => sign_out(request)
+2021-08-02 23:37:41,107 - simpleExample - INFO - server started at http://127.0.0.1:9001...
+2021-08-02 23:37:54,432 - simpleExample - INFO - Request: GET /
+2021-08-02 23:37:54,432 - simpleExample - INFO - check user: GET /
+2021-08-02 23:37:54,433 - simpleExample - INFO - Response handler...
+2021-08-02 23:37:54,433 - root - INFO - call with args: {}
+2021-08-02 23:37:54,434 - root - INFO - SQL: select count(id) _num_ from `blogs`
+2021-08-02 23:37:54,444 - root - INFO - rows returned: 1
+2021-08-02 23:37:54,445 - root - INFO - SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+2021-08-02 23:37:54,450 - root - INFO - rows returned: 2
+2021-08-02 23:37:54,579 - simpleExample - INFO - Request: GET /static/css/uikit.min.css
+2021-08-02 23:37:54,579 - simpleExample - INFO - check user: GET /static/css/uikit.min.css
+2021-08-02 23:37:54,579 - simpleExample - INFO - Response handler...
+2021-08-02 23:37:54,607 - simpleExample - INFO - Request: GET /static/css/uikit.gradient.min.css
+2021-08-02 23:37:54,607 - simpleExample - INFO - check user: GET /static/css/uikit.gradient.min.css
+2021-08-02 23:37:54,608 - simpleExample - INFO - Response handler...
+2021-08-02 23:37:54,618 - simpleExample - INFO - Request: GET /static/css/awesome.css
+2021-08-02 23:37:54,619 - simpleExample - INFO - check user: GET /static/css/awesome.css
+2021-08-02 23:37:54,619 - simpleExample - INFO - Response handler...
+2021-08-02 23:37:54,636 - simpleExample - INFO - Request: GET /static/js/jquery.min.js
+2021-08-02 23:37:54,636 - simpleExample - INFO - check user: GET /static/js/jquery.min.js
+2021-08-02 23:37:54,636 - simpleExample - INFO - Response handler...
+2021-08-02 23:37:54,638 - simpleExample - INFO - Request: GET /static/js/sha1.min.js
+2021-08-02 23:37:54,638 - simpleExample - INFO - check user: GET /static/js/sha1.min.js
+2021-08-02 23:37:54,638 - simpleExample - INFO - Response handler...
+2021-08-02 23:37:54,639 - simpleExample - INFO - Request: GET /static/js/uikit.min.js
+2021-08-02 23:37:54,640 - simpleExample - INFO - check user: GET /static/js/uikit.min.js
+2021-08-02 23:37:54,640 - simpleExample - INFO - Response handler...
+2021-08-02 23:37:54,658 - simpleExample - INFO - Request: GET /static/js/vue.min.js
+2021-08-02 23:37:54,659 - simpleExample - INFO - check user: GET /static/js/vue.min.js
+2021-08-02 23:37:54,659 - simpleExample - INFO - Response handler...
+2021-08-02 23:37:54,660 - simpleExample - INFO - Request: GET /static/js/sticky.min.js
+2021-08-02 23:37:54,661 - simpleExample - INFO - check user: GET /static/js/sticky.min.js
+2021-08-02 23:37:54,661 - simpleExample - INFO - Response handler...
+2021-08-02 23:37:54,662 - simpleExample - INFO - Request: GET /static/js/awesome.js
+2021-08-02 23:37:54,662 - simpleExample - INFO - check user: GET /static/js/awesome.js
+2021-08-02 23:37:54,662 - simpleExample - INFO - Response handler...
+2021-08-02 23:37:54,823 - simpleExample - INFO - Request: GET /static/fonts/fontawesome-webfont.woff
+2021-08-02 23:37:54,823 - simpleExample - INFO - check user: GET /static/fonts/fontawesome-webfont.woff
+2021-08-02 23:37:54,824 - simpleExample - INFO - Response handler...
+2021-08-02 23:38:34,448 - root - INFO - create database connection pool...
+2021-08-02 23:38:34,456 - simpleExample - INFO - init jinja2...
+2021-08-02 23:38:34,456 - simpleExample - INFO - set jinja2 template path: /Users/francisyang/frank_work/python3-blog/src/templates
+2021-08-02 23:38:34,456 - root - INFO - add route GET /api/blogs => api_blogs(page)
+2021-08-02 23:38:34,457 - root - INFO - add route GET /api/comments => api_comments(page)
+2021-08-02 23:38:34,458 - root - INFO - add route POST /api/blogs => api_create_blog(request, name, summary, content)
+2021-08-02 23:38:34,458 - root - INFO - add route POST /api/blogs/{id}/comments => api_create_comment(id, request, content)
+2021-08-02 23:38:34,460 - root - INFO - add route POST /api/blogs/{id}/delete => api_delete_blog(request, id)
+2021-08-02 23:38:34,461 - root - INFO - add route POST /api/comments/{id}/delete => api_delete_comments(id, request)
+2021-08-02 23:38:34,462 - root - INFO - add route GET /api/blogs/{id} => api_get_blog(id)
+2021-08-02 23:38:34,463 - root - INFO - add route GET /api/users => api_get_users(page)
+2021-08-02 23:38:34,464 - root - INFO - add route POST /api/users => api_register_user(email, name, passwd)
+2021-08-02 23:38:34,465 - root - INFO - add route POST /api/blogs/{id} => api_update_blog(id, request, name, summary, content)
+2021-08-02 23:38:34,465 - root - INFO - add route POST /api/authenticate => authenticate(email, passwd)
+2021-08-02 23:38:34,466 - root - INFO - add route GET /blog/{id} => get_blog(id)
+2021-08-02 23:38:34,467 - root - INFO - add route GET / => index(page)
+2021-08-02 23:38:34,467 - root - INFO - add route GET /manage/ => manage()
+2021-08-02 23:38:34,468 - root - INFO - add route GET /manage/blogs => manage_blogs(page)
+2021-08-02 23:38:34,468 - root - INFO - add route GET /manage/comments => manage_comments(page)
+2021-08-02 23:38:34,469 - root - INFO - add route GET /manage/blogs/create => manage_create_blog()
+2021-08-02 23:38:34,469 - root - INFO - add route GET /manage/blogs/edit => manage_edit_blog(id)
+2021-08-02 23:38:34,470 - root - INFO - add route GET /manage/users => manage_users(page)
+2021-08-02 23:38:34,471 - root - INFO - add route GET /register => register()
+2021-08-02 23:38:34,471 - root - INFO - add route GET /sign_in => sign_in()
+2021-08-02 23:38:34,471 - root - INFO - add route GET /sign_out => sign_out(request)
+2021-08-02 23:38:34,473 - simpleExample - INFO - server started at http://127.0.0.1:9001...
+2021-08-02 23:38:43,234 - simpleExample - INFO - Request: GET /
+2021-08-02 23:38:43,238 - simpleExample - INFO - check user: GET /
+2021-08-02 23:38:43,239 - simpleExample - INFO - Response handler...
+2021-08-02 23:38:43,239 - root - INFO - call with args: {}
+2021-08-02 23:38:43,239 - root - INFO - SQL: select count(id) _num_ from `blogs`
+2021-08-02 23:38:43,246 - root - INFO - rows returned: 1
+2021-08-02 23:38:43,247 - root - INFO - SQL: select `id`, `user_id`, `user_name`, `user_image`, `name`, `summary`, `content`, `created_at` from `blogs` order by created_at desc limit ?, ?
+2021-08-02 23:38:43,252 - root - INFO - rows returned: 2
