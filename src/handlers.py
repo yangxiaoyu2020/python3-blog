@@ -81,8 +81,39 @@ async def cookie2user(cookie_str):
         return None
 
 
+@get('/health')
+async def ping(request):
+    """
+    ---
+    description: This end-point allow to test that service is up.
+    tags:
+    - Health check
+    produces:
+    - text/plain
+    responses:
+        "200":
+            description: successful operation. Return "pong" text
+        "405":
+            description: invalid HTTP Method
+    """
+    return web.Response(text="pong")
+
+
 @get('/')
-async def index(*, page='0'):
+async def index(*, page='1'):
+    """
+    ---
+    description: This end-point allow to test that service is up.
+    tags:
+    - home
+    produces:
+    - text/plain
+    responses:
+        "200":
+            description: successful operation. Return "pong" text
+        "405":
+            description: invalid HTTP Method
+    """
     page_index = get_page_index(page)
     num = await Blog.find_number('count(id)')
     page = Page(num)
@@ -103,7 +134,14 @@ async def get_blog(id):
     comments = await Comment.find_all('blog_id=?', [id], orderBy='created_at desc')
     for c in comments:
         c.html_content = text2html(c.content)
-    blog.html_content = markdown2.markdown(blog.content)
+    logging.info(blog.content)
+    markdown = markdown2.markdown(blog.content,
+                                  extras=["tables",
+                                          "code-friendly",
+                                          "footnotes",
+                                          "fenced-code-blocks"])
+    blog.html_content = markdown
+    logging.info(blog.html_content)
     return {
         '__template__': 'blog.html',
         'blog': blog,

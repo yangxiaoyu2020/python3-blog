@@ -10,6 +10,7 @@ import logging
 import os
 from urllib import parse
 
+
 from aiohttp import web
 
 from apis import APIError
@@ -192,5 +193,7 @@ def add_routes(app, module_name):
         if callable(fn):
             method = getattr(fn, '__method__', None)
             path = getattr(fn, '__route__', None)
+            doc = getattr(fn, '__doc__', None)
             if method and path:
                 add_route(app, fn)
+

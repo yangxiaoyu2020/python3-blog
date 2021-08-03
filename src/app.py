@@ -8,6 +8,8 @@ from config import configs
 from jinja2 import Environment, FileSystemLoader
 from aiohttp import web
 from datetime import datetime
+from aiohttp_swagger import *
+
 import time
 import json
 import os
@@ -160,15 +162,16 @@ async def init(loop):
         logger_factory, auth_factory, response_factory
     ])
     init_jinja2(app, filters=dict(datetime=datetime_filter))
-    add_routes(app, 'handlers')
     setup_static_routes(app)
+    add_routes(app, 'handlers')
+    setup_swagger(app, swagger_url="/api/v1/doc", ui_version=2)
     app_runner = web.AppRunner(app)
     await app_runner.setup()
     srv = await loop.create_server(app_runner.server, '127.0.0.1', 9001)
     logging.info('server started at http://127.0.0.1:9001...')
     return srv
 
-
-loop = asyncio.get_event_loop()
-loop.run_until_complete(init(loop))
-loop.run_forever()
+if __name__ == '__main__':
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(init(loop))
+    loop.run_forever()
