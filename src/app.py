@@ -25,8 +25,7 @@ import logging.config
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))      # 项目路径
 
 logging.config.fileConfig(os.path.join(BASE_DIR, "conf/logging.config"))
-logging = logging.getLogger("simpleExample")
-
+cons_logging = logging.getLogger("simpleExample")
 
 
 STATIC_DIR = os.path.join(BASE_DIR, 'src/static')       # 静态文件路径
@@ -168,7 +167,7 @@ async def init(loop):
     app_runner = web.AppRunner(app)
     await app_runner.setup()
     srv = await loop.create_server(app_runner.server, '127.0.0.1', 9001)
-    logging.info('server started at http://127.0.0.1:9001...')
+    cons_logging.info('server started at https://*.*.*.*:***1...')
     return srv
 
 if __name__ == '__main__':

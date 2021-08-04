@@ -28,6 +28,7 @@ def get(path):
 
         wrapper.__method__ = 'GET'
         wrapper.__route__ = path
+        wrapper.__doc__ = func.__doc__
         return wrapper
 
     return decorator
@@ -45,6 +46,7 @@ def post(path):
 
         wrapper.__method__ = 'POST'
         wrapper.__route__ = path
+        wrapper.__doc__ = func.__doc__
         return wrapper
 
     return decorator

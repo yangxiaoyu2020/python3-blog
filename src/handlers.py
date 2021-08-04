@@ -134,14 +134,12 @@ async def get_blog(id):
     comments = await Comment.find_all('blog_id=?', [id], orderBy='created_at desc')
     for c in comments:
         c.html_content = text2html(c.content)
-    logging.info(blog.content)
     markdown = markdown2.markdown(blog.content,
                                   extras=["tables",
                                           "code-friendly",
                                           "footnotes",
                                           "fenced-code-blocks"])
     blog.html_content = markdown
-    logging.info(blog.html_content)
     return {
         '__template__': 'blog.html',
         'blog': blog,

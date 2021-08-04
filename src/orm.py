@@ -115,9 +115,9 @@ class TextField(Field):
 
 class ModelMetaclass(type):
 
-    def __new__(cls, name, bases, attrs):
+    def __new__(mcs, name, bases, attrs):
         if name == 'Model':
-            return type.__new__(cls, name, bases, attrs)
+            return type.__new__(mcs, name, bases, attrs)
         table_name = attrs.get('__table__', None) or name
         logging.info('found model: %s (table: %s)' % (name, table_name))
         mappings = dict()
@@ -149,7 +149,7 @@ class ModelMetaclass(type):
         attrs['__update__'] = 'update `%s` set %s where `%s`=?' % (
             table_name, ', '.join(map(lambda f: '`%s`=?' % (mappings.get(f).name or f), fields)), primary_key)
         attrs['__delete__'] = 'delete from `%s` where `%s`=?' % (table_name, primary_key)
-        return type.__new__(cls, name, bases, attrs)
+        return type.__new__(mcs, name, bases, attrs)
 
 
 class Model(dict, metaclass=ModelMetaclass):
@@ -232,17 +232,17 @@ class Model(dict, metaclass=ModelMetaclass):
         args.append(self.get_value_or_default(self.__primary_key__))
         rows = await execute(self.__insert__, args)
         if rows != 1:
-            logging.warn('failed to insert record: affected rows: %s' % rows)
+            logging.warning('failed to insert record: affected rows: %s' % rows)
 
     async def update(self, **kwargs):
         args = list(map(self.get_value, self.__fields__))
         args.append(self.get_value(self.__primary_key__))
         rows = await execute(self.__update__, args)
         if rows != 1:
-            logging.warn('failed to update by primary key: affected rows: %s' % rows)
+            logging.warning('failed to update by primary key: affected rows: %s' % rows)
 
     async def remove(self):
         args = [self.get_value(self.__primary_key__)]
         rows = await execute(self.__delete__, args)
         if rows != 1:
-            logging.warn('failed to remove by primary key: affected rows: %s' % rows)
+            logging.warning('failed to remove by primary key: affected rows: %s' % rows)
