@@ -16,6 +16,8 @@ import os
 import asyncio
 __author__ = 'Francis yang'
 
+from health.health_handlers import health
+
 '''
 async web application.
 '''
@@ -158,19 +160,23 @@ def setup_static_routes(app):
 async def init(loop):
     await orm.create_pool(loop=loop, **configs.db)
     app = web.Application(middlewares=[
-        logger_factory, auth_factory, response_factory
+        logger_factory,
+        auth_factory,
+        response_factory
     ])
     init_jinja2(app, filters=dict(datetime=datetime_filter))
     setup_static_routes(app)
     add_routes(app, 'handlers')
-    setup_swagger(app, swagger_url="/api/v1/doc", ui_version=2)
+    setup_swagger(app, swagger_url="/api/v1/doc", ui_version=1)
     app_runner = web.AppRunner(app)
     await app_runner.setup()
-    srv = await loop.create_server(app_runner.server, '127.0.0.1', 9001)
-    cons_logging.info('server started at https://*.*.*.*:***1...')
+    srv = await loop.create_server(app_runner.server, '0.0.0.0', 9002)
+    cons_logging.info('server started at port at 9002...')
     return srv
+
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(init(loop))
+    app = init(loop)
+    loop.run_until_complete(app)
     loop.run_forever()

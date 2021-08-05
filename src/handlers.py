@@ -81,39 +81,8 @@ async def cookie2user(cookie_str):
         return None
 
 
-@get('/health')
-async def ping(request):
-    """
-    ---
-    description: This end-point allow to test that service is up.
-    tags:
-    - Health check
-    produces:
-    - text/plain
-    responses:
-        "200":
-            description: successful operation. Return "pong" text
-        "405":
-            description: invalid HTTP Method
-    """
-    return web.Response(text="pong")
-
-
 @get('/')
 async def index(*, page='1'):
-    """
-    ---
-    description: This end-point allow to test that service is up.
-    tags:
-    - home
-    produces:
-    - text/plain
-    responses:
-        "200":
-            description: successful operation. Return "pong" text
-        "405":
-            description: invalid HTTP Method
-    """
     page_index = get_page_index(page)
     num = await Blog.find_number('count(id)')
     page = Page(num)
@@ -130,6 +99,19 @@ async def index(*, page='1'):
 
 @get('/blog/{id}')
 async def get_blog(id):
+    """
+    ---
+    description: ddd1d.
+    tags:
+    - homde
+    produces:
+    - text/plain
+    responses:
+        "200":
+            description: s
+        "401":
+            description: i
+    """
     blog = await Blog.find(id)
     comments = await Comment.find_all('blog_id=?', [id], orderBy='created_at desc')
     for c in comments:

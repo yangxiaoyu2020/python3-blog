@@ -102,6 +102,7 @@ def has_request_arg(fn):
 class RequestHandler(object):
 
     def __init__(self, app, fn):
+        self.__doc__ = fn.__doc__
         self._app = app
         self._func = fn
         self._has_request_arg = has_request_arg(fn)
@@ -158,6 +159,7 @@ class RequestHandler(object):
         logging.info('call with args: %s' % str(kw))
         try:
             r = await self._func(**kw)
+            logging.warning(r.__doc__)
             return r
         except APIError as e:
             return dict(error=e.error, data=e.data, message=e.message)

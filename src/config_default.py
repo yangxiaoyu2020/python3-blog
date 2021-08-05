@@ -10,7 +10,7 @@ __author__ = 'Francis yang'
 configs = {
     'debug': True,
     'db': {
-        'host': '127.0.0.1',
+        'host': '0.0.0.0',
         'port': 3310,
         'user': 'root',
         'db': 'pblog',

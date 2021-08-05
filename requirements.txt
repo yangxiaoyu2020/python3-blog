@@ -7,3 +7,5 @@ Fabric
 pygments~=2.9.0
 markdown2
 aiohttp_swagger
+pytest
+pytest-aiohttp~=0.3.0
