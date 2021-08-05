@@ -10,7 +10,7 @@ __author__ = 'Francis yang'
 configs = {
     'debug': True,
     'db': {
-        'host': '0.0.0.0',
+        'host': 'host.docker.internal',
         'port': 3310,
         'user': 'root',
         'db': 'pblog',
