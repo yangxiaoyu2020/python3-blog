@@ -9,6 +9,6 @@ __author__ = 'Francis yang'
 
 configs = {
     'db': {
-        'host': '127.0.0.1'
+        'host': 'host.docker.internal'
     }
 }

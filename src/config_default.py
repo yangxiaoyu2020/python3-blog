@@ -10,12 +10,12 @@ __author__ = 'Francis yang'
 configs = {
     'debug': True,
     'db': {
-        'host': '127.0.0.1',
-        'port': 3306,
+        'host': 'host.docker.internal',
+        'port': 3310,
         'user': 'root',
-        'password': '*******',
-        'db': 'blog'
-    #   取个好名字以后
+        'db': 'pblog',
+        'password': '123456'
+        #   取个好名字以后
     },
     'session': {
         'secret': 'Awesome'

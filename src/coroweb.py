@@ -10,6 +10,7 @@ import logging
 import os
 from urllib import parse
 
+
 from aiohttp import web
 
 from apis import APIError
@@ -27,6 +28,7 @@ def get(path):
 
         wrapper.__method__ = 'GET'
         wrapper.__route__ = path
+        wrapper.__doc__ = func.__doc__
         return wrapper
 
     return decorator
@@ -44,6 +46,7 @@ def post(path):
 
         wrapper.__method__ = 'POST'
         wrapper.__route__ = path
+        wrapper.__doc__ = func.__doc__
         return wrapper
 
     return decorator
@@ -99,6 +102,7 @@ def has_request_arg(fn):
 class RequestHandler(object):
 
     def __init__(self, app, fn):
+        self.__doc__ = fn.__doc__
         self._app = app
         self._func = fn
         self._has_request_arg = has_request_arg(fn)
@@ -155,6 +159,7 @@ class RequestHandler(object):
         logging.info('call with args: %s' % str(kw))
         try:
             r = await self._func(**kw)
+            logging.warning(r.__doc__)
             return r
         except APIError as e:
             return dict(error=e.error, data=e.data, message=e.message)
@@ -192,5 +197,7 @@ def add_routes(app, module_name):
         if callable(fn):
             method = getattr(fn, '__method__', None)
             path = getattr(fn, '__route__', None)
+            doc = getattr(fn, '__doc__', None)
             if method and path:
                 add_route(app, fn)
+
