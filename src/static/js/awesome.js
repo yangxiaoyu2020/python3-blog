@@ -1,4 +1,4 @@
-// awesome.js
+// nginx.conf.js
 
 // patch for lower-version IE:
 
