@@ -11,8 +11,8 @@ configs = {
     'debug': True,
     'db': {
         'host': 'host.docker.internal',
-        'port': 3310,
-        'user': 'root',
+        'port': 3306,
+        'user': 'francis',
         'db': 'pblog',
         'password': '123456'
         #   取个好名字以后
